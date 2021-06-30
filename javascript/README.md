@@ -17,3 +17,18 @@ ex) 이메일 등록 체크
 - 결과에 따른 처리
   HTML, CSS, DOM, JavaScript
   
+### 문장
+- JS 코드 실행단위
+- 세미콜론(;)까지 하나의 문장
+- var book = "책";
+
+```
+if (true) {
+  var book = "책";
+  var point = 123;
+};
+
+if (true) {
+  var book = "책";
+};
+```
