@@ -188,3 +188,433 @@ log(0.12 + 5);
 5.12
 
 - ES6에 정수, 실수 구분 추가
+
+<br>
+
+# 상수
+
+### 변경할 수 없는 값
+
+### 상수 변수
+- 상수가 설정된 변수
+- JS는 변수의 값을 변경할 수 있으므로 상수변수는 선언적 의미
+
+### 상수 변수 표기 방법
+- 코딩 관례로 영문 대문자 사용
+- var ONE = 1;
+- 상수로 사용한다는 시맨틱 선언
+```
+var ONE = 123;
+ONE = 456;
+log(ONE);
+log(Number.MAX_VALUE);
+```
+1. ONE 변수를 대문자로 선언한 것은 상수라는 것을 나타내기 위한 것
+2. JS는 실행결과처럼 값을 바꿀 수 있음
+3. Number.MAX_VALUE는 최대값으로 JS 상수이며 값을 바꾸면 에러가 남
+
+[실행결과]
+456
+1.7976931348623157e+308
+
+### JS가 제공하는 상수값은 변경 불가
+- MAX_VALUE, MIN_VALUE 등
+
+<br>
+
+# 진수
+
+### 10 진수 : 123
+
+### 16 진수
+- 0xFF : 255
+- 1번째에 숫자 0 작성
+- 2번째에 영문자 x 작성
+- 3번째 이후 : 0~f 작성
+- 대소문자 구분하지 않음
+```
+log(0XF);
+log(0xff);
+log(0xfff);
+```
+1. 0XF는 15
+2. 0X는 16진수를 나타내므로 값이 아니며
+   A:10, B:11, C:12, D:13, E:14, F:15
+3. 0xff는 (16*15 + 15) 방법으로 계산
+4. 0xfff는 (16*16*14) + (16*15) + 15로 계산
+[실행 결과]
+15
+255
+4095
+
+### 8 진수
+- ES3에서 폐지, ES6 재정의
+
+### 2 진수 : ES6에서 특별한 방법 제공
+
+<br>
+
+# 데이터 타입
+
+### 데이터의 사전적 의미는 자료
+- 강좌에서는 데이터로 표기
+
+### 데이터 타입 형태
+- 숫자 타입: var value = 123;
+- 문자 타입: var value = 'sports';
+
+### typeof 연산자
+- 데이터(값) 타입 반환
+- typeof value에 데이터를 작성
+```
+var point = 123;
+log(typeof point);
+
+var book = '책';
+log(typeof book);
+```
+1. 123은 숫자이므로 데이터 타입은 number
+2. '책'은 문자이므로 데이터 타입은 string
+   문자는 "책"처럼 큰따옴표 안에 작성하거나 '책'처럼 작은따옴표 안에 작성
+3. typeof 연산자는 고려사항이 있으며 관련된 곳에서 다시 다룰 예정
+[실행결과]
+number
+string
+
+### 키워드(Keyword)
+- 특별한 기능을 가진 단어
+
+<br>
+
+# 데이터 타입
+
+### 데이터 타입을 자료형이라고도 부름
+- 강좌에서는 데이터 타입으로 표기
+
+### 데이터는 타입을 가짐
+- JS는 데이터를 기준으로 타입을 결정
+- 타입을 먼저 선언하고 타입에 맞는 데이터를 할당하지 않음
+```
+var point = 123;
+log(typeof point);
+
+point = '책';
+log(typeof point);
+```
+1. point 변수에 123을 할당하면 point 변수의 데이터 타입은 number
+2. 다시 point 변수에 '책'을 할당하면 point 변수의 데이터 타입은 string
+3. JS는 이처럼 데이터(값)에 따라 데이터 타입이 결정됨
+[실행 결과]
+number
+string
+
+<br>
+
+# 데이터 타입 분류
+
+### 언어 타입과 스펙 타입
+
+### 언어 타입
+- JS 프로그램에서 사용할 수 있는 타입
+- Undefined, Null, Boolean, String, Number, Object
+
+### 스펙(문서) 타입
+- 언어 알고리즘을 위한 타입으로 JS 프로그램에서 사용 불가
+- Reference, List, Completion, Property Descriptor, Data Block, Lexical Environment, Lexical Record 등
+
+<br>
+
+# Number 타입
+
+### Number 타입
+- 부호(+, -)를 가진 값
+```
+var point = 123;
+log(typeof point);
+
+point = -1.23;
+log(typeof point);
+```
+[실행 결과]
+number
+number
+
+### 숫자 값 범위
+- 18, 437, 736, 874, 454, 810, 627 (2의 64승 - 2의 53승 + 3)
+
+### Number 타입의 특수한 3개 값
+- NaN : Not-a-Number
+```
+var point = 1 * 'A';
+log(point);
+```
+1. NaN는 값이 숫자가 아닌 것을 나타내는 값
+[실행 결과]
+NaN
+
+- Infinity : 양수 무한대
+- -Infinity : 음수 무한대
+
+<br>
+
+# String 타입
+
+### 문자 타입
+- 값을 "" 또는 '' 사이에 작성
+- 최대 문자수 : 2의 53승 - 1
+
+### 큰따옴표와 작은따옴표를 같이 사용할 때
+- 따옴표 작성 방법
+```
+var point = "책, '123'";
+log(point);
+
+point = '책, "123"';
+log(point);
+```
+1. 작은따옴표를 표시하려면 큰따옴표 안에 작은따옴표를 작성
+2. 큰따옴표를 표시하려면 작은따옴표 안에 큰따옴표를 작성
+[실행 결과]
+책, '123'
+책, "123"
+
+### 따옴표에 숫자를 작성하면 문자 타입이 됨
+```
+var value = '123';
+log(typeof value);
+```
+1. 123이 Number 타입에서 String 타입으로 변환
+[실행 결과]
+string
+
+<br>
+
+# Undefined 타입
+
+### Undefined(대문자) 타입
+- 값 : undefined(소문자)
+
+### 변수의 디폴트 값
+- var point;
+- 변수를 선언만 한 것으로 undefined가 초기값으로 설정
+```
+var point;
+log(point);
+```
+1. point 변수를 선언만 하였는데 undefined 출력
+2. 변수가 이름과 값을 갖는 구조를 맞추기 위한 것
+3. 초기값으로 undefined를 설정하기 때문
+[실행 결과]
+undefined
+
+- 변수에 값을 할당하지 않은 것을 나타내는 시맨틱
+
+### 변수에 undefined 할당 가능
+```
+var point = undefined;
+log(point);
+```
+1. undefined가 값이므로 변수에 할당 가능
+2. 하지만, 초기값인지 값을 할당한 것인지 구분이 되지 않으므로 권장하지 않음
+3. 대신, null을 할당
+[실행 결과]
+undefined
+
+<br>
+
+# Null 타입
+
+### Null(대문자) 타입
+- 값 : null(소문자)
+
+### null과 undefined 차이
+- undefined는 단지 변수만 선언
+- null을 할당해야 값이 null이 됨
+- 의도적으로 값을 할당한 것으로 코드를 수행한 것이 됨
+```
+var book;
+log(book);
+
+var point = null;
+log(point);
+```
+[실행 결과]
+undefined
+null
+
+<br>
+
+# Boolean 타입
+
+### 불리언 타입
+- 값 : true, false
+```
+log(true);
+log(false);
+```
+[실행 결과]
+true
+false
+
+<br>
+
+# Object 타입
+
+### Object 형태
+- {name: value} 형태
+```
+var book = {
+    title: "책", point: 123
+};
+log(book);
+```
+1. 중괄호{} 안에 key: value 형태로 작성
+2. 콜론(:)을 기준으로 왼쪽을 프로퍼티 key 또는 name이라고 부르며 오른쪽을 프로퍼티 값이라고 부름
+[실행 결과]
+{title: 책, point: 123}
+
+### 프로퍼티(Property)
+- name과 value 하나를 지칭
+
+### Object는 프로퍼티 집합
+
+<br>
+
+# 타입 정리
+
+### JS의 기본 데이터 타입 정리
+
+### 기본 데이터 타입을 Primitive 타입이라고 함
+```
+log(typeof 123);
+log(typeof "문자열");
+log(typeof true);
+log(typeof undefined);
+```
+1. 시맨틱적으로 데이터 타입을 짐작할 수 있음
+[실행 결과]
+number
+string
+boolean
+undefined
+
+### 데이터 타입이 같다?
+```
+log(typeof null);
+log(typeof {book: "책"});
+```
+1. null과 {book: "책"}의 데이터 타입이 object임
+2. null의 데이터 타입이 null이 아님
+[실행 결과]
+object
+object
+
+<br>
+
+# 연산자
+
+### 연산의 사전적 의미
+- 규칙에 따라 계산하여 값을 구함
+
+### 연산자(Operator) 형태
+- +, -, *, /, %
+- >, >=, <, <=
+- ==, !=, ===, !==
+- 콤마(,), typeof, delete, void
+- instanceof, in, new 등
+
+<br>
+
+# 표현식
+
+### 표현식(Expression) 형태
+- 1 + 2
+- var total = 1 + 2;
+- var value = total / (2 + 3);
+
+### "표현식을 평가" 한다고 함
+
+### 표현식을 평가하면 결과가 반환되며
+- 이를 평가 결과라고 함
+- JS는 표현식의 연결
+
+<br>
+
+# 할당 연산자
+
+### 단일 할다아 연산자
+- = 하나만 사용
+- var result = 1 + 2;
+
+### 복합 할당 연산자
+- = 앞에 연산자 작성
+- +=, -=, *=, /=, %=
+- <<=, >>=
+- >>>=, &=, ^=,|=
+
+### 먼저 = 앞을 연산한 후, 할당
+- var point = 7;
+- point += 3;
+
+<br>
+
+# 해석, 실행 순서
+
+### 해석이란?
+- JS 코드를 기계어로 바꾸는 것
+- 엔진이 해석하고 실행한다
+
+### 실행 순서
+- var result = 1 + 2 + 6;
+- = 왼쪽의 표현식 평가
+- = 오른쪽의 표현식 평가
+    왼쪽에서 오른쪽으로 평가 (1 + 2, 3 + 6)
+- = 오른쪽 표현식의 평과 결과를 왼쪽 표현식 평가 결과에 할당
+
+<br>
+
+# 산술 연산자 (+)
+
+### + 양쪽의 표현식을 평가
+- 평가 결과를 더함
+```
+var value = 1 + 2 + 4;
+log(value);
+```
+1. 우선 2과 2를 더하고
+2. 이어서 더한 값(3)에 4를 더함
+3. 그리고 더한 값(7)을 value 변수에 할당
+[실행 결과]
+7
+
+### 평가 결과 연결
+- 한 쪽이라도 숫자가 아니면 연결
+```
+var two = '2';
+var value = 1 + two;
+log(value);
+log(typeof value);
+```
+1. 한 쪽이라도 평가 결과가 Number 타입이 아니면 평가 결과를 더하지 않고 연결함
+[실행 결과]
+12
+string
+
+### 왼쪽에서 오른쪽으로 연산
+- 1 + 5 + "ABC"의 결과는?
+```
+var value = 1 + 5 + 'ABC';
+log(value);
+```
+1. 우선 1과 5를 더하면 6이 됨
+2. 이어서 6과 'ABC'를 연결
+[실행 결과]
+6ABC
+
+<br>
+
+# 숫자로 변환
+
+### 연산하기 전에 우선 숫자로 변환
+
+### 변환된 값으로 연산
